@@ -3,15 +3,14 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/article">Article</router-link>
-    </div>
-  <router-view/>
+  </div>
+  <router-view />
 </template>
 
 <script>
 import axios from 'axios';
 
 export default {
-
   data() {
     return {
       info: null,
@@ -20,11 +19,9 @@ export default {
   mounted() {
     const accessPoint = 'https://cors-anywhere.herokuapp.com';
     const url = 'https://jobs.github.com/positions.json';
-    return axios
-      .get(`${accessPoint}/${url}?page=${1}`)
-      .then((response) => {
-        this.info = response.data;
-      });
+    return axios.get(`${accessPoint}/${url}?page=${1}`).then((response) => {
+      this.info = response.data;
+    });
   },
 };
 </script>
