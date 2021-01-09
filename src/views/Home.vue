@@ -5,14 +5,21 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script>
+import axios from 'axios';
 
-@Options({
-  components: {
-    HelloWorld,
+export default {
+  data() {
+    return {
+      info: null,
+    };
   },
-})
-export default class Home extends Vue {}
+  mounted() {
+    const accessPoint = 'https://cors-anywhere.herokuapp.com';
+    const url = 'https://jobs.github.com/positions.json';
+    return axios.get(`${accessPoint}/${url}?page=${1}`).then((response) => {
+      this.info = response.data;
+    });
+  },
+};
 </script>
