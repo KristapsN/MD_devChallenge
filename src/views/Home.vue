@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <div v-for="item in info" :key="item.id">
+      {{item.title}}
+    </div>
   </div>
 </template>
 
