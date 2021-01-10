@@ -18,6 +18,11 @@
       </div>
       <div class="col-xs-9">
         Vieta darba sludinājumiem
+        <div class="row">
+          <div class="col-xs-12">
+            <PageSelection/>
+          </div>
+        </div>
       </div>
     </div>
     <div>
@@ -31,6 +36,7 @@ import fetchData from '../api';
 import LocationSelection from '../components/LocationSelection/LocationSelection.vue';
 import JobSelection from '../components/JobSelection/JobSelection.vue';
 import FulltimeSelection from '../components/FulltimeSelection/FulltimeSelection.vue';
+import PageSelection from '../components/PageSelection/PageSelection.vue';
 
 type Data = {
   jobs: [];
@@ -44,6 +50,7 @@ export default defineComponent({
     LocationSelection,
     JobSelection,
     FulltimeSelection,
+    PageSelection,
   },
 
   data(): Data {
