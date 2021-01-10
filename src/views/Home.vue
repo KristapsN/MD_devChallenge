@@ -14,17 +14,9 @@
       <input type="checkbox" v-model="fullTime" />
     </div>
     <div>
-      <h3>LOCATION</h3>
-      <div>
-        <input
-          placeholder="City, state, zip code or country"
-          v-model="selectedCity"
-          type="search"
-        />
-      </div>
+      <LocationSelection @locationSubmitted="addCity"/>
     </div>
     <div>
-      <RadioButton @citySubmitted="addCity"/>
     </div>
   </div>
 </template>
@@ -32,24 +24,24 @@
 <script lang='ts'>
 import { defineComponent } from 'vue';
 import fetchData from '../api';
-import RadioButton from '../components/RadioButton/RadioButton.vue';
+import LocationSelection from '../components/LocationSelection/LocationSelection.vue';
 
 type Data = {
   jobs: [];
-  selectedCity: string;
+  selectedLocation: string;
   fullTime: boolean;
   title: string;
 };
 
 export default defineComponent({
   components: {
-    RadioButton,
+    LocationSelection,
   },
 
   data(): Data {
     return {
       jobs: [],
-      selectedCity: '',
+      selectedLocation: '',
       fullTime: false,
       title: '',
     };
@@ -61,7 +53,7 @@ export default defineComponent({
       console.log(data);
     },
     addCity(city: string) {
-      this.selectedCity = city;
+      this.selectedLocation = city;
     },
   },
 });

@@ -1,4 +1,13 @@
 <template>
+      <h3>LOCATION</h3>
+      <div>
+        <input
+          @change="onSubmit"
+          placeholder="City, state, zip code or country"
+          v-model="city"
+          type="search"
+        />
+      </div>
       <div v-for="capital in radioButtonLocations" :key="capital">
         <label :for="capital">
           <input
@@ -18,7 +27,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-const RadioButton = defineComponent({
+const LocationSelection = defineComponent({
   props: {
   },
   data() {
@@ -29,13 +38,12 @@ const RadioButton = defineComponent({
   },
   methods: {
     onSubmit() {
-      const selectedCity: string = this.city;
-      this.$emit('citySubmitted', selectedCity);
+      this.$emit('locationSubmitted', this.city);
     },
   },
 });
 
-export default RadioButton;
+export default LocationSelection;
 </script>
 
-<style src="./RadioButton.scss" lang="scss" scoped></style>
+<style src="./LocationSelection.scss" lang="scss" scoped></style>
