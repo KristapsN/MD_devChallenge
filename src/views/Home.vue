@@ -1,20 +1,23 @@
 <template>
   <div class="container">
-    <div>
-      <JobSelection @jobSubmitted="addJob"/>
+    <div class="row">
+      <div class="col-xs-12">
+        <JobSelection @jobSubmitted="addJob"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">
+        <FulltimeSelection @fulltimeSubmitted="addFullTime"/>
+        <LocationSelection @locationSubmitted="addCity"/>
+        <br><br>
+        Location: {{selectedLocation}}
+        <br>
+        Job: {{selectedJob}}
+        <br>
+        Full time: {{selectedFullTime}}
+      </div>
     </div>
     <div>
-      <h3>Full time</h3>
-      <input type="checkbox" v-model="fullTime" />
-    </div>
-    <div>
-      <LocationSelection @locationSubmitted="addCity"/>
-    </div>
-    <div>
-      <br><br>
-      Location: {{selectedLocation}}
-      <br>
-      Job: {{selectedJob}}
     </div>
   </div>
 </template>
@@ -24,18 +27,20 @@ import { defineComponent } from 'vue';
 import fetchData from '../api';
 import LocationSelection from '../components/LocationSelection/LocationSelection.vue';
 import JobSelection from '../components/JobSelection/JobSelection.vue';
+import FulltimeSelection from '../components/FulltimeSelection/FulltimeSelection.vue';
 
 type Data = {
   jobs: [];
   selectedJob: string;
   selectedLocation: string;
-  fullTime: boolean;
+  selectedFullTime: boolean;
 };
 
 export default defineComponent({
   components: {
     LocationSelection,
     JobSelection,
+    FulltimeSelection,
   },
 
   data(): Data {
@@ -43,7 +48,7 @@ export default defineComponent({
       jobs: [],
       selectedJob: '',
       selectedLocation: '',
-      fullTime: false,
+      selectedFullTime: false,
     };
   },
   methods: {
@@ -54,6 +59,9 @@ export default defineComponent({
     },
     addJob(job: string) {
       this.selectedJob = job;
+    },
+    addFullTime(fullTime: boolean) {
+      this.selectedFullTime = fullTime;
     },
     addCity(city: string) {
       this.selectedLocation = city;

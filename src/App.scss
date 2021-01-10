@@ -28,7 +28,7 @@ body {
 }
 
 .input-title {
-  position: absolute;
+  position: relative;
   width: 790px;
   height: 55px;
   background: #FFFFFF;
@@ -38,13 +38,13 @@ body {
 }
 
 .btn-search {
-  position: absolute;
+  position: relative;
   background-color: #1E86FF;
   color: white;  
   width: 146px;
   height: 47px;
   border-radius: 4px;
   font-size: 16px;
-  left: 965px;
-  top: 146px;
+  // left: 965px;
+  // top: 146px;
 }
