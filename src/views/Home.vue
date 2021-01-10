@@ -1,13 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <input
-        class="input-title"
-        v-model="title"
-        type="text"
-        placeholder="Title, companies, expertise or benefits"
-      />
-      <button type="button" class="btn-search">Search</button>
+      <JobSelection @jobSubmitted="addJob"/>
     </div>
     <div>
       <h3>Full time</h3>
@@ -17,6 +11,10 @@
       <LocationSelection @locationSubmitted="addCity"/>
     </div>
     <div>
+      <br><br>
+      Location: {{selectedLocation}}
+      <br>
+      Job: {{selectedJob}}
     </div>
   </div>
 </template>
@@ -25,25 +23,27 @@
 import { defineComponent } from 'vue';
 import fetchData from '../api';
 import LocationSelection from '../components/LocationSelection/LocationSelection.vue';
+import JobSelection from '../components/JobSelection/JobSelection.vue';
 
 type Data = {
   jobs: [];
+  selectedJob: string;
   selectedLocation: string;
   fullTime: boolean;
-  title: string;
 };
 
 export default defineComponent({
   components: {
     LocationSelection,
+    JobSelection,
   },
 
   data(): Data {
     return {
       jobs: [],
+      selectedJob: '',
       selectedLocation: '',
       fullTime: false,
-      title: '',
     };
   },
   methods: {
@@ -51,6 +51,9 @@ export default defineComponent({
       const { data } = await fetchData();
       this.jobs = data;
       console.log(data);
+    },
+    addJob(job: string) {
+      this.selectedJob = job;
     },
     addCity(city: string) {
       this.selectedLocation = city;
