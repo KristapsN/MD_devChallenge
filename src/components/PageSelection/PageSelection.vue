@@ -1,5 +1,17 @@
 <template>
-    <div>
+    <div class="wrapper">
+      <button class="button">
+        <div class="arrow-left"/>
+      </button>
+      <button class="button">
+        1
+      </button>
+      <button class="button">
+        10
+      </button>
+      <button class="button">
+        <div class="arrow-right"/>
+      </button>
     </div>
 </template>
 
@@ -11,6 +23,7 @@ const PageSelection = defineComponent({
   },
   data() {
     return {
+      selectedPage: 1,
     };
   },
   methods: {
@@ -23,4 +36,4 @@ const PageSelection = defineComponent({
 export default PageSelection;
 </script>
 
-<style src="./PageSelection.scss" lang="scss" scoped></style>
+<style scoped>@import './PageSelection.scss';</style>
