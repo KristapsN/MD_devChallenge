@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
       <button class="button">
-        <div class="arrow-left"/>
+        <div class="arrow arrow-left"/>
       </button>
       <button class="button">
         1
@@ -10,7 +10,7 @@
         10
       </button>
       <button class="button">
-        <div class="arrow-right"/>
+        <div class="arrow arrow-right"/>
       </button>
     </div>
 </template>
@@ -36,4 +36,6 @@ const PageSelection = defineComponent({
 export default PageSelection;
 </script>
 
-<style scoped>@import './PageSelection.scss';</style>
+<style lang="scss" scoped>
+@import './PageSelection.scss';
+</style>
