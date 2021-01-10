@@ -20,6 +20,7 @@
         Vieta darba sludinājumiem
       </div>
     </div>
+    {{jobs[0]}}
     <div>
     </div>
   </div>
@@ -27,7 +28,8 @@
 
 <script lang='ts'>
 import { defineComponent } from 'vue';
-import fetchData from '../api';
+import axios from 'axios';
+// import fetchData from '../api';
 import LocationSelection from '../components/LocationSelection/LocationSelection.vue';
 import JobSelection from '../components/JobSelection/JobSelection.vue';
 import FulltimeSelection from '../components/FulltimeSelection/FulltimeSelection.vue';
@@ -54,12 +56,19 @@ export default defineComponent({
       selectedFullTime: false,
     };
   },
+  mounted() {
+    const accessPoint = 'https://cors-anywhere.herokuapp.com';
+    const url = 'https://jobs.github.com/positions.json';
+    return axios.get(`${accessPoint}/${url}?page=${1}`).then((response) => {
+      this.jobs = response.data;
+    });
+  },
   methods: {
-    async createJobList() {
-      const { data } = await fetchData();
-      this.jobs = data;
-      console.log(data);
-    },
+    // async createJobList() {
+    //   const { data } = await fetchData();
+    //   this.jobs = data;
+    //   console.log(data);
+    // },
     addJob(job: string) {
       this.selectedJob = job;
     },
