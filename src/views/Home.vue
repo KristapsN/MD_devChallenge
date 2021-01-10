@@ -16,6 +16,9 @@
         <br>
         Full time: {{selectedFullTime}}
       </div>
+      <div class="col-xs-9">
+        Vieta darba sludinājumiem
+      </div>
     </div>
     <div>
     </div>
