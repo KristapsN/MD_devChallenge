@@ -1,9 +1,9 @@
 <template>
   <div class="card-wrapper">
-    <div>
-      <img :src="image" alt="company image" />
+    <div class="image-wrapper">
+      <img :src="image" alt="company image" class="card-image"/>
     </div>
-    <div>
+    <div class="text-wrapper">
       <h4>
           {{company}}
       </h4>
@@ -11,14 +11,16 @@
           {{vacancy}}
       </h2>
       <div>
-          {{vacancy}}
+          {{position}}
       </div>
     </div>
-    <div>
-        {{position}}
-    </div>
-    <div>
+    <div class="info-wrapper">
+    <span>
+        {{location}}
+    </span>
+    <span>
         {{date}}
+    </span>
     </div>
   </div>
 </template>
@@ -27,20 +29,21 @@
 import { defineComponent } from 'vue';
 
 const JobCard = defineComponent({
-  props: {},
+  props: {
+    image: String,
+    company: String,
+    vacancy: String,
+    position: String,
+    location: String,
+    date: String,
+  },
   data() {
     return {
-      image: '',
-      company: '',
-      vacancy: '',
-      position: '',
-      location: '',
-      date: '',
     };
   },
   methods: {
     onSubmit() {
-      this.$emit('jobSubmitted', '');
+      // this.$emit('jobSubmitted', '');
     },
   },
 });

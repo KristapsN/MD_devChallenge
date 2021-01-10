@@ -1,0 +1,19 @@
+.card-wrapper{
+    display: flex;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    padding: 12px;
+}
+.image-wrapper{
+    display: flex;
+    align-items: center;
+}
+.card-image{
+    width: 90px;
+}
+
+.text-wrapper {
+    padding-left: 12px;
+}

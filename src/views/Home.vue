@@ -17,7 +17,7 @@
         Full time: {{selectedFullTime}}
       </div>
       <div class="col-xs-9">
-        <!-- <div :v-if="jobs.length > 0" :v-for="job in jobs" :key="job.id">
+        <div v-for="job in jobs" :key="job.id">
         <JobCard
       :image="job.company_logo"
       :company="job.company"
@@ -26,16 +26,13 @@
       :location="job.location"
       :date="job.created_at"
       />
-        </div> -->
+        </div>
         <div class="row">
           <div class="col-xs-12">
             <PageSelection/>
           </div>
         </div>
       </div>
-    </div>
-    <div v-for="job in jobs" :key="job.id">
-      {{job.title}}
     </div>
   </div>
 </template>
@@ -48,7 +45,7 @@ import LocationSelection from '../components/LocationSelection/LocationSelection
 import JobSelection from '../components/JobSelection/JobSelection.vue';
 import FulltimeSelection from '../components/FulltimeSelection/FulltimeSelection.vue';
 import PageSelection from '../components/PageSelection/PageSelection.vue';
-// import JobCard from '../components/JobCard/JobCard.vue';
+import JobCard from '../components/JobCard/JobCard.vue';
 
 export default defineComponent({
   components: {
@@ -56,7 +53,7 @@ export default defineComponent({
     JobSelection,
     FulltimeSelection,
     PageSelection,
-    // JobCard,
+    JobCard,
   },
 
   data() {
