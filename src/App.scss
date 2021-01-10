@@ -7,44 +7,20 @@
 
 body {
   font-family: Poppins;
-  background-color: #F6F7FB;
-}
-
-#app {
-  margin: 50px;
-}
-.container {
-  padding: 50px;
+  background-color: #F6F7FB;    
 }
 
 .logo {
+  display: flex;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: 36px;
   text-align: left;
-  padding: 60px;
-  color: black;    
+  color: black;
+  margin-left: 40px; 
+  margin-bottom: 30px; 
+  margin-top: 20px;
+  text-decoration: none;
 }
 
-.input-title {
-  position: relative;
-  width: 790px;
-  height: 55px;
-  background: #FFFFFF;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  border: none;
-}
-
-.btn-search {
-  position: relative;
-  background-color: #1E86FF;
-  color: white;  
-  width: 146px;
-  height: 47px;
-  border-radius: 4px;
-  font-size: 16px;
-  // left: 965px;
-  // top: 146px;
-}

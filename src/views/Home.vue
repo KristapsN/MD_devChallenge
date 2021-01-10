@@ -18,14 +18,16 @@
       </div>
       <div class="col-xs-9">
         <div v-for="job in jobs" :key="job.id">
-        <JobCard
-      :image="job.company_logo"
-      :company="job.company"
-      :vacancy="job.title"
-      :position="job.type"
-      :location="job.location"
-      :date="job.created_at"
-      />
+          <router-link :to="'/article/'+job.id">
+            <JobCard
+              :image="job.company_logo"
+              :company="job.company"
+              :vacancy="job.title"
+              :position="job.type"
+              :location="job.location"
+              :date="job.created_at"
+            />
+          </router-link>
         </div>
         <div class="row">
           <div class="col-xs-12">
@@ -64,7 +66,7 @@ export default defineComponent({
       selectedFullTime: false,
     };
   },
-  mounted() {
+  created() {
     const accessPoint = 'https://cors-anywhere.herokuapp.com';
     const url = 'https://jobs.github.com/positions.json';
     return axios.get(`${accessPoint}/${url}?page=${1}`).then((response) => {

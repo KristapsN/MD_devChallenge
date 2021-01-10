@@ -1,12 +1,16 @@
 <template>
+  <div class="image-wrapper">
+    <div class="form-wrapper">
       <input
         class="input-title"
         v-model="title"
         type="text"
         placeholder="Title, companies, expertise or benefits"
         @click="onSubmit"
-      />
+      >
       <button type="button" class="btn-search" @click="onSubmit">Search</button>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">

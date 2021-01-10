@@ -18,7 +18,7 @@ export default {
       info: null,
     };
   },
-  mounted() {
+  created() {
     const accessPoint = 'https://cors-anywhere.herokuapp.com';
     const url = 'https://jobs.github.com/positions.json';
     return axios.get(`${accessPoint}/${url}?page=${1}`).then((response) => {
