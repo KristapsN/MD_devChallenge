@@ -27,8 +27,23 @@
           <div v-if="loading">Loading...</div>
           <div v-else class="row">
             <div class="col-xs-12">
+              <div v-if="selectedFullTime">
+                <div v-for="job in filterFlltime" :key="job.id">
+                   <router-link :to="'/article/' + job.id" class="card--router">
+                    <JobCard
+                      :image="job.company_logo"
+                      :company="job.company"
+                      :vacancy="job.title"
+                      :position="job.type"
+                      :location="job.location"
+                      :date="job.created_at"
+                    />
+                 </router-link>
+               </div>
+              </div>
+              <div v-else>
               <div v-for="job in evenNumbers" :key="job.id">
-                <router-link :to="'/article/' + job.id">
+                <router-link :to="'/article/' + job.id" class="card--router">
                   <JobCard
                     :image="job.company_logo"
                     :company="job.company"
@@ -39,6 +54,7 @@
                   />
                 </router-link>
               </div>
+            </div>
             </div>
             <div class="col-xs-12 display--flex" id="range">
               <PageArrow  arrowDirection="arrow-left" @nextPrev="setPrev"/>
@@ -67,7 +83,6 @@ import axios from 'axios';
 import LocationSelection from '../components/LocationSelection/LocationSelection.vue';
 import JobSelection from '../components/JobSelection/JobSelection.vue';
 import FulltimeSelection from '../components/FulltimeSelection/FulltimeSelection.vue';
-// import PageSelection from '../components/PageSelection/PageSelection.vue';
 import PageNumber from '../components/PageSelection/PageNumber.vue';
 import PageArrow from '../components/PageSelection/PageArrows.vue';
 import JobCard from '../components/JobCard/JobCard.vue';
@@ -77,7 +92,6 @@ export default defineComponent({
     LocationSelection,
     JobSelection,
     FulltimeSelection,
-    // PageSelection,
     JobCard,
     PageNumber,
     PageArrow,
@@ -117,6 +131,9 @@ export default defineComponent({
         // eslint-disable-next-line max-len
         (number: any, index: number) => index < 5 * this.pageNumber && index >= 5 * this.pageNumber - 5,
       );
+    },
+    filterFlltime() {
+      return this.jobs.filter((item: { type: string}, index: number) => item.type === 'Full Time' && index < 5 * this.pageNumber && index >= 5 * this.pageNumber - 5);
     },
   },
   methods: {

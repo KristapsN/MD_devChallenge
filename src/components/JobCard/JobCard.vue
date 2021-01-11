@@ -1,21 +1,24 @@
 <template>
   <div class="card-wrapper">
-    <div class="image-wrapper">
-      <img :src="image" alt="company image" class="card-image"/>
+    <div class="image-wrapper" v-if="image">
+      <img :src="image" alt="company image" class="card-image" width="90px"/>
+    </div>
+        <div class="image-wrapper" v-else>
+      <span class="noimage">not found</span>
     </div>
     <div class="text-wrapper">
-      <h4>
+      <h4 class="company-title">
           {{company}}
       </h4>
-      <h2>
+      <h2 class="vacancy-title">
           {{vacancy}}
       </h2>
-      <div>
+      <span class="possition-tag">
           {{position}}
-      </div>
+      </span>
     </div>
     <div class="info-wrapper">
-    <span>
+    <span class="info-location">
         {{location}}
     </span>
     <span>
