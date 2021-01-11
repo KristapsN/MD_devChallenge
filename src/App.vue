@@ -1,5 +1,5 @@
 <template>
-  <div class="margin-0" id="nav">
+  <div class=" container margin-0" id="nav">
     <router-link to="/" class="logo">Github Jobs</router-link>
   </div>
   <router-view />
