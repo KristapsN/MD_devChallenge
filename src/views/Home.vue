@@ -19,19 +19,16 @@
       <div class="col-xs-9">
         <section v-if="errored">
           <p>
-            We're sorry,
-            we're not able to retrieve this information at the moment,
-            please try back later
+            We're sorry, we're not able to retrieve this information at the
+            moment, please try back later
           </p>
         </section>
         <section v-else>
-          <div v-if="loading">
-            Loading...
-          </div>
+          <div v-if="loading">Loading...</div>
           <div v-else class="row">
             <div class="col-xs-12">
-               <div v-for="job in evenNumbers" :key="job.id">
-                 <router-link :to="'/article/' + job.id">
+              <div v-for="job in evenNumbers" :key="job.id">
+                <router-link :to="'/article/' + job.id">
                   <JobCard
                     :image="job.company_logo"
                     :company="job.company"
@@ -40,15 +37,22 @@
                     :location="job.location"
                     :date="job.created_at"
                   />
-                 </router-link>
-                </div>
+                </router-link>
+              </div>
             </div>
-          <div class="col-xs-12">
-            <div  v-for="(job, index) in jobs" :key="job.id">
-             <PageSelection :selectedPage="index" @selectedPage="chosePage" />
+            <div class="col-xs-12"  id="range">
+              <PageArrow  arrowDirection="arrow-left"/>
+                <div v-for="n in jobs.length/5" :key="n">
+                  <!-- eslint-disable-next-line max-len-->
+                  <PageNumber :selectedPage="n" @select="chosePage" :paginationLength="jobs.length/5" />
+                  <!-- :paginationLength="jobs.length/5"  :selectedPage="n" -->
+                <!-- </div> -->
+              </div>
+              <!-- <div v-for="(job, index) in jobs" :key="job.id">
+                <PageSelection :selectedPage="index" @select="chosePage" />
+              </div> -->
             </div>
           </div>
-        </div>
         </section>
       </div>
     </div>
@@ -62,7 +66,9 @@ import axios from 'axios';
 import LocationSelection from '../components/LocationSelection/LocationSelection.vue';
 import JobSelection from '../components/JobSelection/JobSelection.vue';
 import FulltimeSelection from '../components/FulltimeSelection/FulltimeSelection.vue';
-import PageSelection from '../components/PageSelection/PageSelection.vue';
+// import PageSelection from '../components/PageSelection/PageSelection.vue';
+import PageNumber from '../components/PageSelection/PageNumber.vue';
+import PageArrow from '../components/PageSelection/PageArrows.vue';
 import JobCard from '../components/JobCard/JobCard.vue';
 
 export default defineComponent({
@@ -70,8 +76,10 @@ export default defineComponent({
     LocationSelection,
     JobSelection,
     FulltimeSelection,
-    PageSelection,
+    // PageSelection,
     JobCard,
+    PageNumber,
+    PageArrow,
   },
 
   data() {

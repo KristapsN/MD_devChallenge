@@ -1,27 +1,22 @@
 <template>
     <div class="wrapper">
       <button class="button">
-        <div class="arrow arrow-left"/>
+        <div :class="`arrow` && {arrowDirection}"/>
       </button>
-      <button class="button" @click="onSubmit" >
-        {{ selectedPage  }}
-      </button>
-      <button class="button">
-        10
-      </button>
-      <button class="button">
+
+      <!-- <button class="button">
         <div class="arrow arrow-right"/>
-      </button>
+      </button> -->
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-const PageSelection = defineComponent({
+const PageArrow = defineComponent({
   props: {
     selectedPage: String,
-    paginationLength: Number,
+    arrowDirection: String,
   },
   data() {
     return {
@@ -34,7 +29,7 @@ const PageSelection = defineComponent({
   },
 });
 
-export default PageSelection;
+export default PageArrow;
 </script>
 
 <style lang="scss" scoped>
