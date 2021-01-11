@@ -2,23 +2,23 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <JobSelection @jobSubmitted="addJob"/>
+        <JobSelection @jobSubmitted="addJob" />
       </div>
     </div>
     <div class="row">
       <div class="col-xs-3">
-        <FulltimeSelection @fulltimeSubmitted="addFullTime"/>
-        <LocationSelection @locationSubmitted="addCity"/>
-        <br><br>
-        Location: {{selectedLocation}}
-        <br>
-        Job: {{selectedJob}}
-        <br>
-        Full time: {{selectedFullTime}}
+        <FulltimeSelection @fulltimeSubmitted="addFullTime" />
+        <LocationSelection @locationSubmitted="addCity" />
+        <br /><br />
+        Location: {{ selectedLocation }}
+        <br />
+        Job: {{ selectedJob }}
+        <br />
+        Full time: {{ selectedFullTime }}
       </div>
       <div class="col-xs-9">
-        <div v-for="job in jobs" :key="job.id">
-          <router-link :to="'/article/'+job.id">
+        <div v-for="job in evenNumbers" :key="job.id">
+          <router-link :to="'/article/' + job.id">
             <JobCard
               :image="job.company_logo"
               :company="job.company"
@@ -31,7 +31,9 @@
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <PageSelection/>
+            <div  v-for="(job, index) in jobs" :key="job.id">
+            <PageSelection :selectedPage="index" @selectedPage="chosePage" />
+            </div>
           </div>
         </div>
       </div>
@@ -64,6 +66,7 @@ export default defineComponent({
       selectedJob: '',
       selectedLocation: '',
       selectedFullTime: false,
+      pageNumber: 1,
     };
   },
   created() {
@@ -72,6 +75,14 @@ export default defineComponent({
     return axios.get(`${accessPoint}/${url}?page=${1}`).then((response) => {
       this.jobs = response.data;
     });
+  },
+  computed: {
+    evenNumbers() {
+      return this.jobs.filter(
+        // eslint-disable-next-line max-len
+        (number: any, index: number) => index < 5 * this.pageNumber && index >= 5 * this.pageNumber - 5,
+      );
+    },
   },
   methods: {
     // async createJobList() {
@@ -87,6 +98,10 @@ export default defineComponent({
     },
     addCity(city: string) {
       this.selectedLocation = city;
+    },
+    chosePage(selectedPage: number) {
+      this.pageNumber = selectedPage;
+      console.log('Cilk works', selectedPage);
     },
   },
 });
