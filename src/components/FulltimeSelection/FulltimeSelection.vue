@@ -13,6 +13,7 @@ import { defineComponent } from 'vue';
 const FulltimeSelection = defineComponent({
   props: {
   },
+  emits: ['fulltimeSubmitted'],
   data() {
     return {
       isChecked: false,

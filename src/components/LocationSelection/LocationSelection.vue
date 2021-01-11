@@ -30,6 +30,7 @@ import { defineComponent } from 'vue';
 const LocationSelection = defineComponent({
   props: {
   },
+  emits: ['locationSubmitted'],
   data() {
     return {
       city: '',

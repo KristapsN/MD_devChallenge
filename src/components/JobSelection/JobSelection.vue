@@ -19,6 +19,7 @@ import { defineComponent } from 'vue';
 const JobSelection = defineComponent({
   props: {
   },
+  emits: ['jobSubmitted'],
   data() {
     return {
       title: '',
