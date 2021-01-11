@@ -43,4 +43,10 @@ $activeColor: #1E86FF;
 .arrow-right {  
   transform:translateX(-25%) rotateZ(225deg);  
 }
+.activeButton{
+  background-color: $activeColor;
+  outline:  $activeColor;
+  color: white;
+}
+
 

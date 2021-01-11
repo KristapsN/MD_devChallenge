@@ -44,7 +44,12 @@
               <PageArrow  arrowDirection="arrow-left" @nextPrev="setPrev"/>
                 <div v-for="n in jobs.length/5" :key="n">
                    <!-- eslint-disable-next-line max-len -->
-                  <PageNumber :selectedPage="n" @select="chosePage" :paginationLength="jobs.length/5" />
+                  <PageNumber
+                    :selectedPage="n"
+                    @select="chosePage"
+                    :paginationLength="jobs.length/5"
+                    :activePage="pageNumber"
+                  />
               </div>
               <PageArrow  arrowDirection="arrow-right" @nextPrev="setNext" />
             </div>

@@ -1,6 +1,6 @@
 <template>
-    <button class="button">
-      <div :class="arrowDirection" class="arrow" @click="onSubmit" />
+    <button class="button" @click="onSubmit">
+      <div :class="arrowDirection" class="arrow" />
     </button>
 </template>
 
