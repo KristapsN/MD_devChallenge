@@ -40,17 +40,13 @@
                 </router-link>
               </div>
             </div>
-            <div class="col-xs-12"  id="range">
-              <PageArrow  arrowDirection="arrow-left"/>
+            <div class="col-xs-12 display--flex" id="range">
+              <PageArrow  arrowDirection="arrow-left" @nextPrev="setPrev"/>
                 <div v-for="n in jobs.length/5" :key="n">
-                  <!-- eslint-disable-next-line max-len-->
+                   <!-- eslint-disable-next-line max-len -->
                   <PageNumber :selectedPage="n" @select="chosePage" :paginationLength="jobs.length/5" />
-                  <!-- :paginationLength="jobs.length/5"  :selectedPage="n" -->
-                <!-- </div> -->
               </div>
-              <!-- <div v-for="(job, index) in jobs" :key="job.id">
-                <PageSelection :selectedPage="index" @select="chosePage" />
-              </div> -->
+              <PageArrow  arrowDirection="arrow-right" @nextPrev="setNext" />
             </div>
           </div>
         </section>
@@ -135,7 +131,12 @@ export default defineComponent({
     },
     chosePage(selectedPage: number) {
       this.pageNumber = selectedPage;
-      console.log('Cilk works', selectedPage);
+    },
+    setNext() {
+      this.pageNumber += 1;
+    },
+    setPrev() {
+      this.pageNumber -= 1;
     },
   },
 });

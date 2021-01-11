@@ -1,13 +1,7 @@
 <template>
-    <div class="wrapper">
-      <button class="button">
-        <div :class="`arrow` && {arrowDirection}"/>
-      </button>
-
-      <!-- <button class="button">
-        <div class="arrow arrow-right"/>
-      </button> -->
-    </div>
+    <button class="button">
+      <div :class="arrowDirection" class="arrow" @click="onSubmit" />
+    </button>
 </template>
 
 <script lang="ts">
@@ -15,16 +9,15 @@ import { defineComponent } from 'vue';
 
 const PageArrow = defineComponent({
   props: {
-    selectedPage: String,
     arrowDirection: String,
+    selectedPage: Number,
   },
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     onSubmit() {
-      this.$emit('select', this.selectedPage);
+      this.$emit('nextPrev', this.selectedPage);
     },
   },
 });
@@ -33,5 +26,5 @@ export default PageArrow;
 </script>
 
 <style lang="scss" scoped>
-@import './PageSelection.scss';
+@import "./PageSelection.scss";
 </style>
