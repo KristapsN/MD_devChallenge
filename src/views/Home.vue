@@ -17,6 +17,7 @@
         Full time: {{ selectedFullTime }}
       </div>
       <div class="col-xs-9">
+
         <div v-for="job in evenNumbers" :key="job.id">
           <router-link :to="'/article/' + job.id">
             <JobCard
@@ -34,8 +35,42 @@
             <div  v-for="(job, index) in jobs" :key="job.id">
             <PageSelection :selectedPage="index" @selectedPage="chosePage" />
             </div>
+
+        <section v-if="errored">
+          <p>
+            We're sorry,
+            we're not able to retrieve this information at the moment,
+            please try back later
+          </p>
+        </section>
+        <section v-else>
+          <div v-if="loading">
+            Loading...
+          </div>  
+         </section>
           </div>
-        </div>
+          <div v-else class="row">
+            <div class="col-xs-12">
+              <div v-for="job in jobs" :key="job.id">
+                <router-link :to="'/article/'+job.id">
+                  <JobCard
+                    :image="job.company_logo"
+                    :company="job.company"
+                    :vacancy="job.title"
+                    :position="job.type"
+                    :location="job.location"
+                    :date="job.created_at"
+                  />
+                </router-link>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <PageSelection/>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </div>
@@ -63,18 +98,28 @@ export default defineComponent({
   data() {
     return {
       jobs: [],
+      loading: true,
+      errored: false,
       selectedJob: '',
       selectedLocation: '',
       selectedFullTime: false,
       pageNumber: 1,
     };
   },
-  created() {
+  mounted() {
     const accessPoint = 'https://cors-anywhere.herokuapp.com';
     const url = 'https://jobs.github.com/positions.json';
-    return axios.get(`${accessPoint}/${url}?page=${1}`).then((response) => {
-      this.jobs = response.data;
-    });
+    return axios
+      .get(`${accessPoint}/${url}?page=${1}`)
+      .then((response) => {
+        this.jobs = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+        this.errored = true;
+      })
+      // eslint-disable-next-line no-return-assign
+      .finally((): boolean => this.loading = false);
   },
   computed: {
     evenNumbers() {
