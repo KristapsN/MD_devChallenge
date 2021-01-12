@@ -19,6 +19,8 @@
           <span class="back-text">Back to search</span>
           </router-link>
           <p class="apply-heading">HOW TO APPLY</p>
+          <p class="text">Please email a copy of your resume and online portfolio to</p>
+          <p class="apply-text" v-html="jobs.how_to_apply"></p>
           </div>
         </div>
         <div class="col-xs-8 col-xs-offset-2" v-if="filteredJob.id===$route.params.id">

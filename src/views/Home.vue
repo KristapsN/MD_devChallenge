@@ -146,7 +146,7 @@ export default defineComponent({
       }
       return filterSearch;
     },
-    filterJobOpenings() {
+    filterJobOpenings(): Job[] {
       const pageCounter = this.filterNumberOfPages
         .filter((item: Job, index: number) => index < 5 * this.pageNumber
         && index >= 5 * this.pageNumber - 5);
