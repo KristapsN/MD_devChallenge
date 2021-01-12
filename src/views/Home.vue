@@ -9,12 +9,6 @@
       <div class="col-xs-3">
         <FulltimeSelection @fulltimeSubmitted="addFullTime" />
         <LocationSelection @locationSubmitted="addCity" />
-        <br /><br />
-        Location: {{ selectedLocation }}
-        <br />
-        Job: {{ selectedJob }}
-        <br />
-        Full time: {{ selectedFullTime }}
       </div>
       <div class="col-xs-9">
         <section v-if="errored">
@@ -27,7 +21,7 @@
           <div v-if="loading">Loading...</div>
           <div v-else class="row">
             <div class="col-xs-12">
-              <div v-for="job in filterProducts" :key="job.id">
+              <div v-for="job in filterJobOpenings" :key="job.id">
                 <router-link :to="'/article/' + job.id" class="card--router">
                   <JobCard
                     :image="job.company_logo"
@@ -42,7 +36,7 @@
             </div>
             <div class="col-xs-12 display--flex" id="range">
               <PageArrow  arrowDirection="arrow-left" @nextPrev="setPrev"/>
-                <div v-for="n in filterProducts.length" :key="n">
+                <div v-for="n in Math.ceil(filterNumberOfPages.length/5)" :key="n">
                   <PageNumber
                     :selectedPage="n"
                     @select="chosePage"
@@ -132,7 +126,7 @@ export default defineComponent({
     );
   },
   computed: {
-    filterProducts(): Job[] {
+    filterNumberOfPages(): Job[] {
       let filteredFullTime = this.jobs;
       if (this.selectedFullTime) {
         filteredFullTime = this.jobs
@@ -150,7 +144,10 @@ export default defineComponent({
           || item.company.includes(this.selectedJob)
           || item.description.includes(this.selectedJob));
       }
-      const pageCounter = filterSearch
+      return filterSearch;
+    },
+    filterJobOpenings() {
+      const pageCounter = this.filterNumberOfPages
         .filter((item: Job, index: number) => index < 5 * this.pageNumber
         && index >= 5 * this.pageNumber - 5);
       return pageCounter;
@@ -159,21 +156,28 @@ export default defineComponent({
   methods: {
     addJob(job: string) {
       this.selectedJob = job;
+      this.pageNumber = 1;
     },
     addFullTime(fullTime: boolean) {
       this.selectedFullTime = fullTime;
+      this.pageNumber = 1;
     },
     addCity(city: string) {
       this.selectedLocation = city;
+      this.pageNumber = 1;
     },
     chosePage(selectedPage: number) {
       this.pageNumber = selectedPage;
     },
     setNext() {
-      this.pageNumber += 1;
+      if (this.pageNumber < Math.ceil(this.filterNumberOfPages.length / 5)) {
+        this.pageNumber += 1;
+      }
     },
     setPrev() {
-      this.pageNumber -= 1;
+      if (this.pageNumber > 1) {
+        this.pageNumber -= 1;
+      }
     },
   },
 });
