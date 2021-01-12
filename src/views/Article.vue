@@ -61,6 +61,7 @@
 
 <script lang="ts">
 import axios from 'axios';
+import { defineComponent } from 'vue';
 
 type Job = {
     id: string;
@@ -82,7 +83,7 @@ type Data = {
   errored: boolean;
 }
 
-export default {
+export default defineComponent({
   data(): Data {
     return {
       jobs: [],
@@ -107,13 +108,7 @@ export default {
         .finally((): boolean => (this.loading = false))
     );
   },
-  // computed: {
-  //   filteredJob() {
-  //     // eslint-disable-next-line no-undef
-  //     return this.jobs.find((item) => item.id === this.$route.params.id).map((item) => item);
-  //   },
-  // },
-};
+});
 </script>
 
 <style lang="scss">
