@@ -9,6 +9,7 @@
 .image-wrapper{
     display: flex;
     align-items: center;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 }
 .card-image{
     width: 90px;
@@ -43,6 +44,7 @@
     border-radius: 4px;
     padding: 6px 8px;
     margin: 0;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
    
 }
 .info-wrapper{
@@ -71,4 +73,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 }

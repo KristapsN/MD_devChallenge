@@ -132,21 +132,21 @@ export default defineComponent({
     );
   },
   computed: {
-    filterProducts() {
+    filterProducts(): Job[] {
       let filteredFullTime = this.jobs;
       if (this.selectedFullTime) {
         filteredFullTime = this.jobs
-          .filter((item: { type: string}) => item.type === 'Full Time');
+          .filter((item: Job) => item.type === 'Full Time');
       }
       let filteredCity = filteredFullTime;
       if (this.selectedLocation.length > 0) {
         filteredCity = filteredFullTime
-          .filter((item: { type: string}) => item.location.includes(this.selectedLocation));
+          .filter((item: Job) => item.location.includes(this.selectedLocation));
       }
       let filterSearch = filteredCity;
       if (this.selectedJob.length > 0) {
         filterSearch = filteredCity
-          .filter((item: { type: string}) => item.title.includes(this.selectedJob)
+          .filter((item: Job) => item.title.includes(this.selectedJob)
           || item.company.includes(this.selectedJob)
           || item.description.includes(this.selectedJob));
       }

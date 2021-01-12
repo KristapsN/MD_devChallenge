@@ -19,9 +19,11 @@
     </div>
     <div class="info-wrapper">
     <span class="info-location">
+      <font-awesome-icon icon="globe-americas" class="globe-americas" />
         {{location}}
     </span>
     <span>
+      <font-awesome-icon icon="clock" class="clock" />
         {{date}}
     </span>
     </div>
@@ -30,8 +32,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 const JobCard = defineComponent({
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
     image: String,
     company: String,
