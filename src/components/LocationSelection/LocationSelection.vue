@@ -1,5 +1,5 @@
 <template>
-    <div class="location-wrapper">
+    <div class="location-radio-wrapper">
       <h3 class="location--title margin--bottom--15">LOCATION</h3>
       <div class="search-wrapper">
         <font-awesome-icon icon="globe-americas" class="globe-americas" />
