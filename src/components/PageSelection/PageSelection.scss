@@ -8,6 +8,7 @@ $activeColor: #1E86FF;
 
 .button {
   display: flex;
+  flex-direction: row;
   background-color: #F6F7FB;
   color: #B7BCCE;
   border: 1px solid #B7BCCE;
@@ -42,4 +43,10 @@ $activeColor: #1E86FF;
 .arrow-right {  
   transform:translateX(-25%) rotateZ(225deg);  
 }
+.activeButton{
+  background-color: $activeColor;
+  outline:  $activeColor;
+  color: white;
+}
+
 

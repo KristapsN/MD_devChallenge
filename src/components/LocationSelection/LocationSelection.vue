@@ -1,15 +1,16 @@
 <template>
-      <h3>LOCATION</h3>
+      <h3 class="location--title margin--bottom--15">LOCATION</h3>
       <div>
         <input
           @change="onSubmit"
           placeholder="City, state, zip code or country"
           v-model="city"
           type="search"
+          class="location--textinput"
         />
       </div>
-      <div v-for="capital in radioButtonLocations" :key="capital">
-        <label :for="capital">
+      <div v-for="capital in radioButtonLocations" :key="capital" class="margin--bottom--15">
+        <label :for="capital" class="radio--label">
           <input
             @change="onSubmit"
             v-model="city"

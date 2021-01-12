@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <label for="checkboxFulltime">
+    <div class="margin--botom--30">
+      <label for="checkboxFulltime" class="input--label">
       <input id="checkboxFulltime" type="checkbox" v-model="isChecked" @change="onSubmit"/>
       Full time
     </label>

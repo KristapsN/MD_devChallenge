@@ -3,8 +3,8 @@
       <button class="button">
         <div class="arrow arrow-left"/>
       </button>
-      <button class="button">
-        1
+      <button class="button" @click="onSubmit" >
+        {{ selectedPage  }}
       </button>
       <button class="button">
         10
@@ -20,15 +20,16 @@ import { defineComponent } from 'vue';
 
 const PageSelection = defineComponent({
   props: {
+    selectedPage: String,
+    paginationLength: Number,
   },
   data() {
     return {
-      selectedPage: 1,
     };
   },
   methods: {
     onSubmit() {
-      this.$emit('', 'smth');
+      this.$emit('select', this.selectedPage);
     },
   },
 });
