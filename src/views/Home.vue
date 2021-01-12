@@ -27,8 +27,8 @@
           <div v-if="loading">Loading...</div>
           <div v-else class="row">
             <div class="col-xs-12">
-              <div v-if="selectedFullTime">
-                <div v-for="job in filterFlltime" :key="job.id">
+              <!-- <div v-if="selectedFullTime"> -->
+                <div v-for="job in filterFulltime" :key="job.id">
                    <router-link :to="'/article/' + job.id" class="card--router">
                     <JobCard
                       :image="job.company_logo"
@@ -39,9 +39,9 @@
                       :date="job.created_at"
                     />
                  </router-link>
-               </div>
+               <!-- </div> -->
               </div>
-              <div v-else>
+              <!-- <div v-else>
               <div v-for="job in evenNumbers" :key="job.id">
                 <router-link :to="'/article/' + job.id" class="card--router">
                   <JobCard
@@ -54,12 +54,11 @@
                   />
                 </router-link>
               </div>
-            </div>
+            </div> -->
             </div>
             <div class="col-xs-12 display--flex" id="range">
               <PageArrow  arrowDirection="arrow-left" @nextPrev="setPrev"/>
                 <div v-for="n in jobs.length/5" :key="n">
-                   <!-- eslint-disable-next-line max-len -->
                   <PageNumber
                     :selectedPage="n"
                     @select="chosePage"
@@ -127,13 +126,12 @@ export default defineComponent({
   },
   computed: {
     evenNumbers() {
-      return this.jobs.filter(
-        // eslint-disable-next-line max-len
-        (number: any, index: number) => index < 5 * this.pageNumber && index >= 5 * this.pageNumber - 5,
-      );
+      return this.jobs.filter((number: any, index: number) => index < 5 * this.pageNumber
+          && index >= 5 * this.pageNumber - 5);
     },
-    filterFlltime() {
-      return this.jobs.filter((item: { type: string}, index: number) => item.type === 'Full Time' && index < 5 * this.pageNumber && index >= 5 * this.pageNumber - 5);
+    filterFulltime() {
+      return this.jobs.filter((item: { type: string}, index: number) => item.type === 'Full Time'
+        && index < 5 * this.pageNumber && index >= 5 * this.pageNumber - 5);
     },
   },
   methods: {
