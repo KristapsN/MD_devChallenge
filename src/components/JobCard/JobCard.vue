@@ -19,10 +19,12 @@
     </div>
     <div class="info-wrapper">
     <span class="info-location">
+      <font-awesome-icon icon="globe-americas" class="globe-americas" />
         {{location}}
     </span>
     <span>
-        {{ moment(date).fromNow() }}
+      <font-awesome-icon icon="clock" class="clock" />
+         {{ moment(date).fromNow() }}
     </span>
     </div>
   </div>
@@ -31,10 +33,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 moment().format();
 
 const JobCard = defineComponent({
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
     image: String,
     company: String,
