@@ -30,39 +30,124 @@ margin-bottom: 36px;
 }
 
 .image-wrapper{
+  width: 100px;
+  height: 80px;
+  overflow: hidden;
   display: flex;
+  justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  margin-right: 12px;
 }
 .card-image{
-  width: 42px;
+  border-radius: 4px;
+  width: 100%;
 }
 .title-wrapper {
-  display: block;
+  display: flex;
 }
 .job-title{
   font-size: 24px;
-  font-style: normal;
+  line-height: 28px;
+  margin-bottom: 12px;
   font-weight: 700;
-  line-height: 28px;
-  letter-spacing: 0em;
-  text-align: left;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
   color: #334680;
+  margin-right: 17px;
 }
 .type-tag {
-  width: 63px;
-  height: 26px;
-  font-weight: bold;
-  font-size: 12px;
-  color: #334680;
   border: 1px solid #334680;
   border-radius: 4px;
-  align-items: center;
-  justify-content: center;
+  width: 75px;
+  height: 26px;
+  padding: 6px 8px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: #334680;
+}
+.globe-americas {
+  color: rgb(185, 189, 207);
+  width: 15px;
+  height: 15px;
+  margin: -1px 8px;
+}
+.clock {
+  color: rgb(185, 189, 207);
+  width: 15px;
+  height: 15px;
   margin: 0;
+  margin-right: 8px;
+}
+.back-link {
+  display: flex;
+  align-items: center;
+  color: rgb(30, 134, 255);
+  text-decoration: none;
+  margin-bottom: 36px;
+
+  &:hover {
+    color:  rgba(30, 134, 255, 0.8);
+  }
+}
+
+.back-icon {
+  margin: 0;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.back-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  cursor: pointer;
+}
+
+.time-wrapper {
+  color: #b7bcce;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  margin-bottom: 35px;
+}
+
+.company {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #334680;
+  margin-left: 9px;
+  margin-bottom: 4px;
+}
+.company-image-wrapper {
+  display: flex;
+}
+.company-location-wrapper {
+
+}
+
+.location-wrapper {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.location-text {
+  margin: 0;
+  margin-left: 12px;
+  color: rgb(51, 70, 128);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.description {
+  color: #334680;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  text-align: justify;
+  margin-bottom: 40px;
 }
