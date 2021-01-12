@@ -14,17 +14,17 @@
       <div class="row" v-for="filteredJob in jobs" :key="filteredJob.id">
         <div class="col-xs-2" v-if="filteredJob.id===$route.params.id">
           <div class="sidebar">
-            <div class="arrow-back">
-            arr + Back to search
-          </div>
-           <h3 class="sidebar--title">
-            HOW TO APPLY
-           </h3 >
-            <span v-html="filteredJob.how_to_apply" class="sidebar--contact"/>
+          <router-link to="/" class="back">
+          <font-awesome-icon icon="long-arrow-alt-left" class="back-icon"/>
+          <span class="back-text">Back to search</span>
+          </router-link>
+          <p class="apply-heading">HOW TO APPLY</p>
+          <p class="text">Please email a copy of your resume and online portfolio to</p>
+          <p class="apply-text" v-html="jobs.how_to_apply"></p>
           </div>
         </div>
         <div class="col-xs-8 col-xs-offset-2" v-if="filteredJob.id===$route.params.id">
-          <div class="row title-wrapper">
+          <div class="title-wrapper">
             <div class="job-title">
               {{filteredJob.title}}
               <div class="type-tag">
@@ -32,24 +32,34 @@
               </div>
             </div>
           </div>
-          <div class="row">
-             {{ moment(filteredJob.created_at).fromNow() }}
+          <div class="time-wrapper">
+            <font-awesome-icon icon="clock" class="clock"/>
+            {{ moment(filteredJob.created_at).fromNow() }}
           </div>
           <div class="row">
+            <div class="col-xs-7">
+            <div class="company-image-wrapper">
             <div class="image-wrapper">
-              <img :src="filteredJob.company_logo" alt="company image" class="card-image"/>
+              <img :src="filteredJob.company_logo"
+              alt="company image"
+              class="card-image"/>
             </div>
-            <div>
-              <h1>
+            <div class="company-location-wrapper">
+              <h1 class="company">
                 {{filteredJob.company}}
               </h1>
-              <div>
+              <div class="location-wrapper">
+              <div class="location-text">
+                <font-awesome-icon icon="globe-americas" class="globe-americas"/>
                 {{filteredJob.location}}
+                </div>
               </div>
             </div>
+            </div>
+           </div>
           </div>
           <div class="row">
-            <p>
+            <p class="description">
               <span v-html="filteredJob.description"></span>
             </p>
           </div>
@@ -62,6 +72,7 @@
 <script lang="ts">
 import axios from 'axios';
 import { defineComponent } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import moment from 'moment';
 
 moment().format();
@@ -95,6 +106,9 @@ export default defineComponent({
       errored: false,
       moment,
     };
+  },
+  components: {
+    FontAwesomeIcon,
   },
   mounted() {
     const accessPoint = 'https://cors-anywhere.herokuapp.com';
