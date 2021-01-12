@@ -27,22 +27,7 @@
           <div v-if="loading">Loading...</div>
           <div v-else class="row">
             <div class="col-xs-12">
-              <!-- <div v-if="selectedFullTime"> -->
-                <div v-for="job in filterFulltime" :key="job.id">
-                   <router-link :to="'/article/' + job.id" class="card--router">
-                    <JobCard
-                      :image="job.company_logo"
-                      :company="job.company"
-                      :vacancy="job.title"
-                      :position="job.type"
-                      :location="job.location"
-                      :date="job.created_at"
-                    />
-                 </router-link>
-               <!-- </div> -->
-              </div>
-              <!-- <div v-else>
-              <div v-for="job in evenNumbers" :key="job.id">
+              <div v-for="job in filterProducts" :key="job.id">
                 <router-link :to="'/article/' + job.id" class="card--router">
                   <JobCard
                     :image="job.company_logo"
@@ -54,15 +39,14 @@
                   />
                 </router-link>
               </div>
-            </div> -->
             </div>
             <div class="col-xs-12 display--flex" id="range">
               <PageArrow  arrowDirection="arrow-left" @nextPrev="setPrev"/>
-                <div v-for="n in jobs.length/5" :key="n">
+                <div v-for="n in filterProducts.length" :key="n">
                   <PageNumber
                     :selectedPage="n"
                     @select="chosePage"
-                    :paginationLength="jobs.length/5"
+                    :paginationLength="jobs.length"
                     :activePage="pageNumber"
                   />
               </div>
@@ -148,13 +132,28 @@ export default defineComponent({
     );
   },
   computed: {
-    evenNumbers(): Job[] {
-      return this.jobs.filter((number: Job, index: number) => index < 5 * this.pageNumber
-          && index >= 5 * this.pageNumber - 5);
-    },
-    filterFulltime(): Job[] {
-      return this.jobs.filter((item: { type: string}, index: number) => item.type === 'Full Time'
-        && index < 5 * this.pageNumber && index >= 5 * this.pageNumber - 5);
+    filterProducts() {
+      let filteredFullTime = this.jobs;
+      if (this.selectedFullTime) {
+        filteredFullTime = this.jobs
+          .filter((item: { type: string}) => item.type === 'Full Time');
+      }
+      let filteredCity = filteredFullTime;
+      if (this.selectedLocation.length > 0) {
+        filteredCity = filteredFullTime
+          .filter((item: { type: string}) => item.location.includes(this.selectedLocation));
+      }
+      let filterSearch = filteredCity;
+      if (this.selectedJob.length > 0) {
+        filterSearch = filteredCity
+          .filter((item: { type: string}) => item.title.includes(this.selectedJob)
+          || item.company.includes(this.selectedJob)
+          || item.description.includes(this.selectedJob));
+      }
+      const pageCounter = filterSearch
+        .filter((item: Job, index: number) => index < 5 * this.pageNumber
+        && index >= 5 * this.pageNumber - 5);
+      return pageCounter;
     },
   },
   methods: {
