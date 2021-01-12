@@ -7,6 +7,7 @@
         type="text"
         placeholder="Title, companies, expertise or benefits"
         @click="onSubmit"
+        @keyup.enter="onSubmit"
       >
       <button type="button" class="btn-search" @click="onSubmit">Search</button>
     </div>

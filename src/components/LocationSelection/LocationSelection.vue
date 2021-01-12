@@ -35,7 +35,7 @@ const LocationSelection = defineComponent({
   data() {
     return {
       city: '',
-      radioButtonLocations: ['London', 'Amsterdam', 'New York', 'Berlin'],
+      radioButtonLocations: ['London', 'Amsterdam', 'New York', 'Berlin', 'Zeist'],
     };
   },
   methods: {
