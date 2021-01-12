@@ -1,74 +1,68 @@
 <template>
-<div class="container">
-  <div class="row">
-    <section v-if="errored">
+  <div class="container">
+    <section v-if="loading">
+            Loading...
+    </section>
+    <section v-else-if="errored">
       <div>
         We're sorry,
         we're not able to retrieve this information at the moment,
         please try back later
       </div>
     </section>
-    <section v-else>
-      <div v-if="loading">
-        Loading...
-      </div>
-      <div v-else class="row">
-        <div class="col-xs-3">
+    <section v-else-if="jobs.length">
+      <div class="row" v-for="filteredJob in jobs" :key="filteredJob.id">
+        <div class="col-xs-3" v-if="filteredJob.id===$route.params.id">
           <div>
             arrow + back to search
+            <br/>
             HOW TO APPLY
-            Please email a copy of your resume and online portfolio to
-            e-mail@email.com
+            <div v-html="filteredJob.how_to_apply"></div>
           </div>
         </div>
-          <div class="col-xs-9">
-            <div v-for="item in jobs" :key="item.id">
-              <div v-if=" $route.params.id === item.id">
-                <div class="row">
-                  <div>
-                    {{ item.title }}
-                  </div>
-                  <div>
-                    {{ item.type }}
-                  </div>
-                </div>
-                <div class="row">
-                  {{item.job.created_at}}
-                </div>
-                <div class="row">
-                  <div class="image-wrapper">
-                    <img :src="image" alt="company image" class="card-image"/>
-                  </div>
-                  <div>
-                    <h1>
-                      {{item.job.company}}
-                    </h1>
-                    <div>
-                      {{item.job.location}}
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <p>
-                    {{item.description}}
-                  </p>
-                </div>
+        <div class="col-xs-9" v-if="filteredJob.id===$route.params.id">
+          <div class="row">
+            <div>
+              {{filteredJob.title}}
+            </div>
+            <div>
+              {{filteredJob.type}}
+            </div>
+          </div>
+          <div class="row">
+            {{filteredJob.created_at}}
+          </div>
+          <div class="row">
+            <div class="image-wrapper">
+              <img :src="filteredJob.company_logo" alt="company image" class="card-image"/>
+            </div>
+            <div>
+              <h1>
+                {{filteredJob.company}}
+              </h1>
+              <div>
+                {{filteredJob.location}}
               </div>
             </div>
+          </div>
+          <div class="row">
+            <p>
+              <span v-html="filteredJob.description"></span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
   </div>
-</div>
 </template>
 
-<script>
+<script lang="ts">
 import axios from 'axios';
 
 export default {
   data() {
     return {
-      jobs: null,
+      jobs: [],
       loading: true,
       errored: false,
     };
@@ -86,7 +80,13 @@ export default {
         this.errored = true;
       })
       // eslint-disable-next-line no-return-assign
-      .finally(() => this.loading = false);
+      .finally((): boolean => this.loading = false);
   },
+  // computed: {
+  //   filteredJob() {
+  //     // eslint-disable-next-line no-undef
+  //     return this.jobs.find((item) => item.id === this.$route.params.id).map((item) => item);
+  //   },
+  // },
 };
 </script>
