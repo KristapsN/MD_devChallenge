@@ -62,8 +62,28 @@
 <script lang="ts">
 import axios from 'axios';
 
+type Job = {
+    id: string;
+    type: string;
+    url: string;
+    created_at: string;
+    company: string;
+    company_url: string;
+    location: string;
+    title: string;
+    description: string;
+    how_to_apply: string;
+    company_logo: string;
+};
+
+type Data = {
+  jobs: Job[];
+  loading: boolean;
+  errored: boolean;
+}
+
 export default {
-  data() {
+  data(): Data {
     return {
       jobs: [],
       loading: true,
@@ -73,17 +93,19 @@ export default {
   mounted() {
     const accessPoint = 'https://cors-anywhere.herokuapp.com';
     const url = 'https://jobs.github.com/positions.json';
-    return axios
-      .get(`${accessPoint}/${url}?page=${1}`)
-      .then((response) => {
-        this.jobs = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-        this.errored = true;
-      })
-      // eslint-disable-next-line no-return-assign
-      .finally((): boolean => this.loading = false);
+    return (
+      axios
+        .get(`${accessPoint}/${url}?page=${1}`)
+        .then((response) => {
+          this.jobs = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.errored = true;
+        })
+        // eslint-disable-next-line no-return-assign
+        .finally((): boolean => (this.loading = false))
+    );
   },
   // computed: {
   //   filteredJob() {
