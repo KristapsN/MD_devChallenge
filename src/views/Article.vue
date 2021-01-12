@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="row">
-            {{filteredJob.created_at}}
+             {{ moment(filteredJob.created_at).fromNow() }}
           </div>
           <div class="row">
             <div class="image-wrapper">
@@ -62,6 +62,9 @@
 <script lang="ts">
 import axios from 'axios';
 import { defineComponent } from 'vue';
+import moment from 'moment';
+
+moment().format();
 
 type Job = {
     id: string;
@@ -89,6 +92,7 @@ export default defineComponent({
       jobs: [],
       loading: true,
       errored: false,
+      moment,
     };
   },
   mounted() {

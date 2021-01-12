@@ -22,7 +22,7 @@
         {{location}}
     </span>
     <span>
-        {{date}}
+        {{ moment(date).fromNow() }}
     </span>
     </div>
   </div>
@@ -30,6 +30,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import moment from 'moment';
+
+moment().format();
 
 const JobCard = defineComponent({
   props: {
@@ -42,6 +45,7 @@ const JobCard = defineComponent({
   },
   data() {
     return {
+      moment,
     };
   },
 });
