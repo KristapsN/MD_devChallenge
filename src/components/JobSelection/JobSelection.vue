@@ -1,6 +1,7 @@
 <template>
   <div class="image-wrapper">
     <div class="form-wrapper">
+      <font-awesome-icon icon="suitcase" class="suitcase"/>
       <input
         class="input-title"
         v-model="title"
@@ -16,8 +17,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 const JobSelection = defineComponent({
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
   },
   emits: ['jobSubmitted'],

@@ -12,24 +12,24 @@
     </section>
     <section v-else-if="jobs.length">
       <div class="row" v-for="filteredJob in jobs" :key="filteredJob.id">
-        <div class="col-xs-3" v-if="filteredJob.id===$route.params.id">
+        <div class="col-xs-2" v-if="filteredJob.id===$route.params.id">
           <div class="sidebar">
-            <div>
+            <div class="arrow-back">
             arr + Back to search
           </div>
-           <div>
+           <h3 class="sidebar--title">
             HOW TO APPLY
-           </div>
-            <div v-html="filteredJob.how_to_apply"/>
+           </h3 >
+            <span v-html="filteredJob.how_to_apply" class="sidebar--contact"/>
           </div>
         </div>
-        <div class="col-xs-9" v-if="filteredJob.id===$route.params.id">
-          <div class="row">
-            <div>
+        <div class="col-xs-8 col-xs-offset-2" v-if="filteredJob.id===$route.params.id">
+          <div class="row title-wrapper">
+            <div class="job-title">
               {{filteredJob.title}}
-            </div>
-            <div>
-              {{filteredJob.type}}
+              <div class="type-tag">
+                {{filteredJob.type}}
+              </div>
             </div>
           </div>
           <div class="row">
