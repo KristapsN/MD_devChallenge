@@ -23,6 +23,7 @@ const PageNumber = defineComponent({
     return {
     };
   },
+  emits: ['select'],
   methods: {
     onSubmit() {
       this.$emit('select', this.selectedPage);

@@ -44,11 +44,6 @@ const JobCard = defineComponent({
     return {
     };
   },
-  methods: {
-    onSubmit() {
-      // this.$emit('jobSubmitted', '');
-    },
-  },
 });
 
 export default JobCard;

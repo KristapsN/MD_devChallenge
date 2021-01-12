@@ -15,6 +15,7 @@ const PageArrow = defineComponent({
   data() {
     return {};
   },
+  emits: ['nextPrev'],
   methods: {
     onSubmit() {
       this.$emit('nextPrev', this.selectedPage);

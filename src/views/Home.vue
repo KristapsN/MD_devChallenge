@@ -78,13 +78,36 @@
 <script lang='ts'>
 import { defineComponent } from 'vue';
 import axios from 'axios';
-// import fetchData from '../api';
 import LocationSelection from '../components/LocationSelection/LocationSelection.vue';
 import JobSelection from '../components/JobSelection/JobSelection.vue';
 import FulltimeSelection from '../components/FulltimeSelection/FulltimeSelection.vue';
 import PageNumber from '../components/PageSelection/PageNumber.vue';
 import PageArrow from '../components/PageSelection/PageArrows.vue';
 import JobCard from '../components/JobCard/JobCard.vue';
+
+type Job = {
+    id: string;
+    type: string;
+    url: string;
+    created_at: string;
+    company: string;
+    company_url: string;
+    location: string;
+    title: string;
+    description: string;
+    how_to_apply: string;
+    company_logo: string;
+};
+
+type Data = {
+  jobs: Job[] | undefined;
+  loading: boolean;
+  errored: boolean;
+  selectedJob: string;
+  selectedLocation: string;
+  selectedFullTime: boolean;
+  pageNumber: number;
+}
 
 export default defineComponent({
   components: {
@@ -96,7 +119,7 @@ export default defineComponent({
     PageArrow,
   },
 
-  data() {
+  data(): Data {
     return {
       jobs: [],
       loading: true,
@@ -125,21 +148,16 @@ export default defineComponent({
     );
   },
   computed: {
-    evenNumbers() {
-      return this.jobs.filter((number: any, index: number) => index < 5 * this.pageNumber
+    evenNumbers(): Job[] {
+      return this.jobs.filter((number: Job, index: number) => index < 5 * this.pageNumber
           && index >= 5 * this.pageNumber - 5);
     },
-    filterFulltime() {
+    filterFulltime(): Job[] {
       return this.jobs.filter((item: { type: string}, index: number) => item.type === 'Full Time'
         && index < 5 * this.pageNumber && index >= 5 * this.pageNumber - 5);
     },
   },
   methods: {
-    // async createJobList() {
-    //   const { data } = await fetchData();
-    //   this.jobs = data;
-    //   console.log(data);
-    // },
     addJob(job: string) {
       this.selectedJob = job;
     },
