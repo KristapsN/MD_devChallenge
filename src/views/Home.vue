@@ -100,7 +100,7 @@ type Job = {
 };
 
 type Data = {
-  jobs: Job[] | undefined;
+  jobs: Job[];
   loading: boolean;
   errored: boolean;
   selectedJob: string;
