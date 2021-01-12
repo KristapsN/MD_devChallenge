@@ -6,11 +6,11 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-3">
+      <div class="col-xs-12 col-md-3">
         <FulltimeSelection @fulltimeSubmitted="addFullTime" />
         <LocationSelection @locationSubmitted="addCity" />
       </div>
-      <div class="col-xs-9">
+      <div class="col-xs-12 col-md-9">
         <section v-if="errored">
           <p>
             We're sorry, we're not able to retrieve this information at the
